@@ -4,7 +4,7 @@ print("Inputs: O, G")
 def calculateOperationalCost():
     return 1
 
-def run(O, G):
+def run(G,O):
     cluster_centers = O
     clusters = G
     for m_dash in cluster_centers:
