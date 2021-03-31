@@ -22,3 +22,5 @@ GAMMA = 1
 AVG_SERVICE_RATE = [2, 2, 2, 5]  # mu
 AVG_ARRIVAL_RATE = [2, 2, 2, 10]  # lambda
 NUM_SERVERS_EACH_DATA_CENTER = [3, 3, 3, 3]  # Nj
+F = -1
+prevSolution = []
