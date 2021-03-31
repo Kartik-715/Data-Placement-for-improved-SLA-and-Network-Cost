@@ -18,6 +18,12 @@ AGREED_SLA_COST = [[5, 5, 5, 5],
                    [5, 5, 5, 5],
                    [5, 5, 5, 5],
                    [5, 5, 5, 5]]  # Qi,m
+COST_TRANSMITTING_DATA = [[0, 3, 2, 0],
+                          [3, 0, 0, 1],
+                          [0, 2, 0, 8],
+                          [10, 2, 8, 0]]  # C_e
+
+DATA_GENERATED_SINGLE_WRITE_REQUEST_M = [3,10,2,6] #tau_m_w
 GAMMA = 1
 AVG_SERVICE_RATE = [2, 2, 2, 5]  # mu
 AVG_ARRIVAL_RATE = [2, 2, 2, 10]  # lambda
