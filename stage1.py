@@ -64,22 +64,22 @@ def setupDualModel():
 
 def run():
     model = setupModel()
-    print(model)
+    #print(model)
     model.writeLP("Stage_1.lp")
     model.solve(p.PULP_CBC_CMD())
     status = p.LpStatus[model.status]
-    print(status)
+    #print(status)
 
     # Decision Variables
-    x_m_j = np.array([v.value() for v in model.variables()]).reshape(-1, constants.COUNT_DATA)
+    x_m_j = np.array([v.value() for v in model.variables()]).reshape(constants.COUNT_DATA,-1)
 
     dual_model = setupDualModel()
-    print(dual_model)
+    #print(dual_model)
     dual_model.writeLP("Stage_1_dual.lp")
 
     dual_model.solve(p.PULP_CBC_CMD())
     dual_status = p.LpStatus[model.status]
-    print(dual_status)
+    #print(dual_status)
 
     # Decision Variables
     alpha_m = [v.value() for v in dual_model.variables()]

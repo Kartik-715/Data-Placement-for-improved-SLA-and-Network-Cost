@@ -1,4 +1,5 @@
 import constants
+from collections import defaultdict
 #
 # x_m_j = [[0, 0.1, 0.2, 0.1],
 #          [0.3, 0.1, 0.1, 0],
@@ -14,12 +15,13 @@ def intersection(lst1, lst2):
 def run(x_m_j, alpha_m):
     N_m = [[j for j, x in enumerate(x_m) if x > 0] for x_m in x_m_j]
 
-    O = []
-    G = {}
+    O = list()
+    G = defaultdict(list)
 
     D_dash = [i for i in range(constants.COUNT_DATA)]
 
     while len(D_dash) > 0:
+        print(D_dash)
         m_dash = D_dash[0]
         max_val = 1000000
         for m in D_dash:
@@ -28,6 +30,7 @@ def run(x_m_j, alpha_m):
                 max_val = temp_val
                 m_dash = m
 
+        print("Selected center:",m_dash)
         O.append(m_dash)
         G[m_dash].append(m_dash)
         D_dash.remove(m_dash)
@@ -47,8 +50,7 @@ def run(x_m_j, alpha_m):
                 G[m_dash].append(m)
                 D_dash.remove(m)
 
-        G[m_dash].append(m_dash)
-        return G,O
+    return G,O
 
 
 

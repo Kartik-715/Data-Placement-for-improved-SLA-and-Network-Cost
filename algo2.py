@@ -3,10 +3,6 @@ import sys
 import numpy as np
 import stage1
 
-print("Running Cluster Based Data Placement")
-print("Inputs: O, G")
-
-
 # data_solution -> dictionary of (data, datacenters_list)
 
 def minDistance(dist, sptSet):
@@ -66,8 +62,8 @@ def calculateNetworkCommunicationCost(data_solution):
 
 def calculateSLACost(data_solution):
     finalCost = 0
-    for m in constants.COUNT_DATA:
-        for j in constants.NUMBER_DATA_CENTERS:
+    for m in range(constants.COUNT_DATA):
+        for j in range(constants.NUMBER_DATA_CENTERS):
             finalCost += (stage1.L_m_j[m][j] * data_solution[m][j])
     return finalCost
 
@@ -84,11 +80,13 @@ def run(G, O):
     clusters = G
     operationalCost = 0
     placementSolution = np.zeros((constants.COUNT_DATA, constants.NUMBER_DATA_CENTERS))
+    print("Cluster Centers", cluster_centers)
+    print("Cluster",clusters)
 
     for m_dash in cluster_centers:
         cluster = clusters[m_dash]
         N_m_dash = []
-        for j in placementSolution[m_dash]:
+        for j in range(constants.NUMBER_DATA_CENTERS):
             if placementSolution[m_dash][j] > 0:
                 N_m_dash.append(j)
 
