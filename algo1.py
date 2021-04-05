@@ -21,7 +21,6 @@ def run(x_m_j, alpha_m):
     D_dash = [i for i in range(constants.COUNT_DATA)]
 
     while len(D_dash) > 0:
-        print(D_dash)
         m_dash = D_dash[0]
         max_val = 1000000
         for m in D_dash:
@@ -30,7 +29,6 @@ def run(x_m_j, alpha_m):
                 max_val = temp_val
                 m_dash = m
 
-        print("Selected center:",m_dash)
         O.append(m_dash)
         G[m_dash].append(m_dash)
         D_dash.remove(m_dash)
@@ -50,7 +48,7 @@ def run(x_m_j, alpha_m):
                 G[m_dash].append(m)
                 D_dash.remove(m)
 
-    return G,O
+    return G,O,N_m
 
 
 

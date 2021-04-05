@@ -55,7 +55,8 @@ def calculateNetworkCommunicationCost(data_solution):
         tempCost *= rate_write_requests_data_m
         tempCost *= constants.DATA_GENERATED_SINGLE_WRITE_REQUEST_M[m]
 
-        finalCost += tempCost
+        if tempCost >= 0:
+            finalCost += tempCost
 
     return finalCost
 
@@ -75,7 +76,7 @@ def calculateOperationalCost(data_solution):
     return slaCost + networkCost
 
 
-def run(G, O):
+def run(G, O, N_m):
     cluster_centers = O
     clusters = G
     operationalCost = 0
@@ -85,23 +86,20 @@ def run(G, O):
 
     for m_dash in cluster_centers:
         cluster = clusters[m_dash]
-        N_m_dash = []
-        for j in range(constants.NUMBER_DATA_CENTERS):
-            if placementSolution[m_dash][j] > 0:
-                N_m_dash.append(j)
+        N_m_dash = N_m[m_dash]
 
         tempOperationalCostArr = []
         for j in N_m_dash:
-            tempPlacementSolution = placementSolution
+            tempPlacementSolution = placementSolution.copy()
             for m in cluster:
                 tempPlacementSolution[m][j] = 1
             operationalCost = calculateOperationalCost(tempPlacementSolution)
             tempOperationalCostArr.append((operationalCost, j))
 
         tempOperationalCostArr.sort()
-
-        for j in N_m_dash:
-            while not cluster:
+        print(tempOperationalCostArr)
+        for _, j in tempOperationalCostArr:
+            while cluster:
                 data = cluster[0]
                 cluster.pop(0)
                 placementSolution[data][j] = 1
@@ -112,10 +110,13 @@ def run(G, O):
                         continue
                     possibleDataCenters.append(j_dash)
 
+                # print(j)
+                # print(possibleDataCenters)
+
                 for k in range(constants.NUMBER_REPLICAS - 1):
                     minIncreaseCost = sys.maxsize
                     for j_dash in possibleDataCenters:
-                        tempPlacementSolution = placementSolution
+                        tempPlacementSolution = placementSolution.copy()
                         tempPlacementSolution[data][j_dash] = 1
                         operationalCost = calculateOperationalCost(tempPlacementSolution)
 
@@ -126,4 +127,4 @@ def run(G, O):
                     placementSolution[data][jBest] = 1
                     possibleDataCenters.remove(jBest)
 
-        return calculateOperationalCost(placementSolution), placementSolution
+    return calculateOperationalCost(placementSolution), placementSolution

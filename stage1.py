@@ -27,6 +27,8 @@ def calculateSLACostMatrix():
 
 
 L_m_j = calculateSLACostMatrix()
+print("L_m_j:")
+print(L_m_j)
 
 
 def setupModel():
