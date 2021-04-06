@@ -17,7 +17,7 @@ AGREED_SLA_COST = [[54, 44, 15, 32],
 COST_TRANSMITTING_DATA = [[10, 6, 4, 7],
                          [6, 9, 9, 4],
                          [7, 2, 2, 6],
-[                        10, 3, 7, 1]]
+                         [10, 3, 7, 1]]
 DATA_GENERATED_SINGLE_WRITE_REQUEST_M = [4, 6, 3, 7]
 GAMMA = 1
 AVG_SERVICE_RATE = [9, 2, 9, 1]

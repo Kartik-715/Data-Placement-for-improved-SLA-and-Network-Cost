@@ -9,5 +9,4 @@ def run():
     print(totalOperationalCost, placementSolution)
     return totalOperationalCost, placementSolution
 
-
 run()
