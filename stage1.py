@@ -32,7 +32,7 @@ print(L_m_j)
 
 
 def setupModel():
-    variable_names = [str(j) + str(i) for j in range(0, constants.COUNT_DATA) for i in
+    variable_names = [str(j).zfill(7) + str(i).zfill(7) for j in range(0, constants.COUNT_DATA) for i in
                       range(0, constants.NUMBER_DATA_CENTERS)]
     variable_names.sort()
     model_loc = p.LpProblem("Stage_1", p.LpMinimize)
@@ -50,7 +50,7 @@ def setupModel():
 
 
 def setupDualModel():
-    dual_variable_names = [str(0) + str(j) for j in range(constants.COUNT_DATA)]
+    dual_variable_names = [str(0).zfill(7) + str(j).zfill(7) for j in range(constants.COUNT_DATA)]
     dual_variable_names.sort()
     DP_variables = p.LpVariable.matrix("Alpha", dual_variable_names, lowBound=0)
     dual_model_loc = p.LpProblem("Stage_1_Dual", p.LpMaximize)
@@ -60,7 +60,7 @@ def setupDualModel():
     dual_model_loc += dual_obj_func
     for m in range(0, constants.COUNT_DATA):
         for j in range(0, constants.NUMBER_DATA_CENTERS):
-            dual_model_loc += p.lpSum(alpha_star[0][m]) <= L_m_j[m][j], "Dual Constraint_" + str(m) + str(j)
+            dual_model_loc += p.lpSum(alpha_star[0][m]) <= L_m_j[m][j], "Dual Constraint_" + str(m).zfill(7) + str(j).zfill(7)
     return dual_model_loc
 
 
