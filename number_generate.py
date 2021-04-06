@@ -2,19 +2,19 @@ import numpy as np
 import random
 
 # print("Enter Number of Data Centers")
-NUMBER_DATA_CENTERS = 200
+NUMBER_DATA_CENTERS = 4
 print("NUMBER_DATA_CENTERS =", NUMBER_DATA_CENTERS)
 
 # print("Enter Number of Users")
-NUMBER_USERS = 70
+NUMBER_USERS = 3
 print("NUMBER_USERS =", NUMBER_USERS)
 
 # print("Enter Total Count of Data")
-COUNT_DATA = 200
+COUNT_DATA = 4
 print("COUNT_DATA =", COUNT_DATA)
 
 # print("Enter Total Number of Replicas")
-NUMBER_REPLICAS = 4
+NUMBER_REPLICAS = 3
 print("NUMBER_REPLICAS =", NUMBER_REPLICAS)
 
 print("READ_PATTERNS = [", end="")
